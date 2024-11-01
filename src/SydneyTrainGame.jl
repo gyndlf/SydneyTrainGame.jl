@@ -51,7 +51,15 @@ end
 
 function solve(x::Int)::Vector
     """Solve the Sydney Train game. Assumes that rearrangment is ok."""
-    return []
+    d = digits(x) |> reverse
+    solutions = []
+    for perm in permutations(d)
+        y = evalpoly(10, perm)
+        if length(digits(y)) == N  # make sure we didn't swap a 0 to the front!
+            append!(solutions, solve_straight(y))
+        end
+    end
+    return solutions
 end
 
 

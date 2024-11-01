@@ -14,11 +14,17 @@ end
 
 
 function multiply(x::Rational, y::Rational)::Rational
+    if abs(x) == Inf || abs(y) == Inf
+        return Inf
+    end
     return x*y
 end
 
 
 function divide(x::Rational, y::Rational)::Rational
+    if y == 0
+        return Inf
+    end
     return x//y
 end
 
